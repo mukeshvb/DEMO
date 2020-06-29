@@ -4,7 +4,15 @@ pipeline {
         stage('Example') {
             steps {
                 echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
+				  }
+			}
+        stage('copy') {
+            steps {
+                echo "copying steps"
+				sh 'scp -r /temp/test.log root@adc01kmt.us.oracle.coms:/temp'
+				sh 'ssh root@adc01kmt.us.oracle.com "ls -ltr /tmp"'
             }
         }
     }
 }
+
